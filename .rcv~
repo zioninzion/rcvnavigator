@@ -8,8 +8,7 @@
 #       You can also copy the reference (into the clipboard) and simply type and enter "rcv" into the terminal console.
 #      Alternatively, you can replace "rcv" to "rv" to open the text through a browser instead.
 #
-# The following arrays were originally created for BibleHub navigation, which is why it's not optimized for RcV app
-
+# Bible books TODO
 typeset -A biblebooks
 local biblebooks=([gen]=genesis [exo]=exodus [lev]=leviticus [num]=numbers [deu]=deuteronomy [jos]=joshua [jud]=judges [rut]=ruth
   [1sa]=1_samuel [2sa]=2_samuel [1ki]=1_kings [2ki]=2_kings [1ch]=1_chronicles [2ch]=2_chronicles [ezr]=ezra [neh]=nehemiah
