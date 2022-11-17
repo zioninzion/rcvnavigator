@@ -116,6 +116,8 @@ ref_fy () {
 
 rcv() {
   local refs=$(ref_fy r $@);
+  # TODO redirect to a different chapter or book first since if it is in the same chapter,
+  # it will not relocate to a new different verse
   open -a Holy\ Bible "https://text.recoveryversion.bible/$refs";
 }
 
