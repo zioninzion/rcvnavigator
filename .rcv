@@ -23,8 +23,8 @@ local biblebooks=([gen]=genesis [exo]=exodus [lev]=leviticus [num]=numbers [deu]
   [rev]=revelation)
 
 typeset -A biblebooknumber
-local biblebooknumber=([genesis]=1 [exodus]=2 [leviticus]=3 [numbers]=4 [deuteronomy]=5 [joshua]=6 [juddges]=7 [ruth]=8
-  [1_samuel]=9 [2_samuel]=10 [1_kings]=11 [2_kings]=12 [1_chronicles]=13 [2_chronicles]=14 [ezra]=15 [nehemiah]=16
+local biblebooknumber=([genesis]=01 [exodus]=02 [leviticus]=03 [numbers]=04 [deuteronomy]=05 [joshua]=06 [juddges]=07 [ruth]=08
+  [1_samuel]=09 [2_samuel]=10 [1_kings]=11 [2_kings]=12 [1_chronicles]=13 [2_chronicles]=14 [ezra]=15 [nehemiah]=16
   [esther]=17 [job]=18 [psalms]=19 [proverbs]=20 [ecclesiastes]=21 [song_of_songs]=22 [isaiah]=23
   [jeremiah]=24 [lamentation]=25 [ezekiel]=26 [daniel]=27 [hosea]=28 [joel]=29 [amos]=30 [obadiah]=31 [jonah]=32
   [micah]=33 [nahum]=34 [habakkuk]=35 [zephaniah]=36 [haggai]=37 [zechariah]=38 [malachi]=39 [matthew]=40 [mark]=41
