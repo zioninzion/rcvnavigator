@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 #
 # How to use:
-#   1. Save this file locally and import it by adding ". ~/.rcv" to ~/.zshrc file.
+#   1. Save this file locally and import it by adding ". ~/rl.sh" to ~/.zshrc file.
 #       If .zshrc doesn't exist, create it in your ~ folder (/Users/[username]) via the command "touch ~/.zshrc"
-#   2. Type and enter "rcv" followed by the verse reference (ex. "rcv John 1:1" or "rcv John 1 1") into the terminal
+#   2. Type and enter "rl" ('R'ecovery Version 'L'ookup) followed by the verse reference (ex. "rl John 1:1" or "rl John 1 1") into the terminal
 #      console to navigate to that verse in the app Holy Bible (Recovery Version).
-#       You can also copy the reference (into the clipboard) and simply type and enter "rcv" into the terminal console.
-#      Alternatively, you can replace "rcv" to "rv" to open the text through a browser instead.
+#       You can also copy the reference (into the clipboard) and simply type and enter "rl" into the terminal console.
+#      Alternatively, you can replace "rl" to "rw" ('R'ecovery Version 'W'ebsite) to open the text through a browser instead.
 #
 # The following arrays were originally created for BibleHub navigation, which is why it's not optimized for RcV app
 
@@ -114,7 +114,7 @@ ref_fy () {
   fi
 }
 
-rcv() {
+rl() {
   local refs=$(ref_fy r $@);
   # Redirects first to Psalm 117 (the shortest chapter in the Bible) in case the new reference is the chapter as the previous reference.
   # Otherwise the app will not redirect to a different verse within the same chapter.
@@ -123,11 +123,11 @@ rcv() {
   open -a Holy\ Bible "https://text.recoveryversion.bible/$refs";
 }
 
-rc() {
+rw() {
   local refs=$(ref_fy r $@);
   open "https://text.recoveryversion.bible/$refs";
 }
 
-# Customize with desired alias
-alias bibleapp=rcv
-alias bibleonline=rc
+# Customize with desired alias. Replace "bibleapp" or "bibleonline" with any desired word (e.g. alias an_alias=rl)
+alias bibleapp=rl
+alias bibleonline=rw
