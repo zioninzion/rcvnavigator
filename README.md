@@ -5,7 +5,7 @@ In a CLI (e.g. Terminal), ```source``` the ```rl.sh``` file (e.g. ```source rl.s
 
 Then enter ```rl``` followed by a space and a desired Bible verse reference.
 
-Possible commands for Romans 8:11:
+Possible commands for Romans 8:11 (for the app[^1]):
 ```
 rl Romans 8:11
 rl Rom. 8:11
@@ -17,3 +17,4 @@ rl rom 8 11
 rw Romans 8:11
 rw rom 8 11
 ```
+[^1]: As of 3/3/2023, when the app first opens, it opens to the last verse visited before closing the app instead of to your requested verse. You can simply enter the command again in the CLI once the app is open to navigate to the desired verse.
