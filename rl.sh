@@ -11,22 +11,22 @@
 # The following arrays were originally created for BibleHub navigation, which is why it's not optimized for RcV app
 
 typeset -A biblebooks
-local biblebooks=([gen]=genesis [exo]=exodus [lev]=leviticus [num]=numbers [deu]=deuteronomy [jos]=joshua [jud]=judges [rut]=ruth
+local biblebooks=([gen]=genesis [exo]=exodus [lev]=leviticus [num]=numbers [deu]=deuteronomy [jos]=joshua [jdg]=judges [rut]=ruth
   [1sa]=1_samuel [2sa]=2_samuel [1ki]=1_kings [2ki]=2_kings [1ch]=1_chronicles [2ch]=2_chronicles [ezr]=ezra [neh]=nehemiah
   [est]=esther [job]=job [psa]=psalms [pro]=proverbs [ecc]=ecclesiastes [son]=song_of_songs [sos]=song_of_songs
-  [ss]=song_of_songs [isa]=isaiah
-  [jer]=jeremiah [lam]=lamentation [eze]=ezekiel [dan]=daniel [hos]=hosea [joe]=joel [amo]=amos [oba]=obadiah [jon]=jonah
-  [mic]=micah [nah]=nahum [hab]=habakkuk [zep]=zephaniah [hag]=haggai [zec]=zechariah [mal]=malachi [mat]=matthew [mark]=mark
+  [s.s]=song_of_songs [s.]=song_of_songs [ss]=song_of_songs [isa]=isaiah
+  [jer]=jeremiah [lam]=lamentations [eze]=ezekiel [dan]=daniel [hos]=hosea [joe]=joel [amo]=amos [oba]=obadiah [jon]=jonah
+  [mic]=micah [nah]=nahum [hab]=habakkuk [zep]=zephaniah [hag]=haggai [zec]=zechariah [mal]=malachi [mat]=matthew [mar]=mark
   [luk]=luke [joh]=john [act]=acts [rom]=romans [1co]=1_corinthians [2co]=2_corinthians [gal]=galatians [eph]=ephesians
   [phi]=philippians [col]=colossians [1th]=1_thessalonians [2th]=2_thessalonians [1ti]=1_timothy [2ti]=2_timothy [tit]=titus
   [phm]=philemon [heb]=hebrews [jam]=james [1pe]=1_peter [2pe]=2_peter [1jo]=1_john [2jo]=2_john [3jo]=3_john [jud]=jude
   [rev]=revelation)
 
 typeset -A biblebooknumber
-local biblebooknumber=([genesis]=01 [exodus]=02 [leviticus]=03 [numbers]=04 [deuteronomy]=05 [joshua]=06 [juddges]=07 [ruth]=08
+local biblebooknumber=([genesis]=01 [exodus]=02 [leviticus]=03 [numbers]=04 [deuteronomy]=05 [joshua]=06 [judges]=07 [ruth]=08
   [1_samuel]=09 [2_samuel]=10 [1_kings]=11 [2_kings]=12 [1_chronicles]=13 [2_chronicles]=14 [ezra]=15 [nehemiah]=16
   [esther]=17 [job]=18 [psalms]=19 [proverbs]=20 [ecclesiastes]=21 [song_of_songs]=22 [isaiah]=23
-  [jeremiah]=24 [lamentation]=25 [ezekiel]=26 [daniel]=27 [hosea]=28 [joel]=29 [amos]=30 [obadiah]=31 [jonah]=32
+  [jeremiah]=24 [lamentations]=25 [ezekiel]=26 [daniel]=27 [hosea]=28 [joel]=29 [amos]=30 [obadiah]=31 [jonah]=32
   [micah]=33 [nahum]=34 [habakkuk]=35 [zephaniah]=36 [haggai]=37 [zechariah]=38 [malachi]=39 [matthew]=40 [mark]=41
   [luke]=42 [john]=43 [acts]=44 [romans]=45 [1_corinthians]=46 [2_corinthians]=47 [galatians]=48 [ephesians]=49
   [philippians]=50 [colossians]=51 [1_thessalonians]=52 [2_thessalonians]=53 [1_timothy]=54 [2_timothy]=55 [titus]=56
