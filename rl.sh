@@ -35,7 +35,8 @@ local biblebooknumber=([genesis]=01 [exodus]=02 [leviticus]=03 [numbers]=04 [deu
 
 ref_fy () {
   local num='^[1-3]$';
-  local chpver='^[0-9]+:[0-9]+$';
+  local nums='^[0-9]*$';
+  local chpver='^[1-9]+[0-9]*:[1-9]+[0-9]*$';
   local index=1;
   local rec=0;
 
@@ -43,14 +44,19 @@ ref_fy () {
   if [[ "$refs" = '' || "$refs" = 'r' ]]; then # Search
     refs=($refs $(pbpaste));
   fi
-  # If reference starts with numeric
 
-  # Parse input reference to book_name (lowercase, no space), book_n (retrieved from array), chp (number), ver (numbe)
   if [[ $refs[$index] = 'r' ]]; then # Recovery Version reference
     ((index++));
     rec=1;
   fi
 
+  if [[ ${refs[$index]:l} = 'song' ]]; then # song of songs
+    ((index+=2))
+  elif [[ ${refs[$index]:l} = 's.' ]]; then # s. s.
+    ((index++))
+  fi
+
+  # If reference starts with numeric
   if [[ $refs[$index] =~ $num ]]; then
     local book_name="$refs[$index]$refs[$index+1]";
   else
@@ -58,6 +64,7 @@ ref_fy () {
     local book_name=$refs[$index+1];
   fi
 
+  # Parse input reference to book_name (lowercase, no space), book_n (retrieved from array), chp (number), ver (number)
   if [[ $refs[$index+2] =~ $chpver ]]; then
     local cv=$refs[$index+2];
     local chp=${cv%:*};
@@ -67,50 +74,63 @@ ref_fy () {
     local ver=$refs[$index+3];
   fi
 
-  book_name=${book_name:l};
-  local book3=${book_name[1,3]};
-  local book_n=$biblebooks[$book3];
-
-  if [[ "${book_name[1,6]}" = 'philem' || "${book_name[1,5]}" = 'philm' ]]; then
-    book_n=philemon
+  if [[ $chp = '' ]]; then
+    chp=1
   fi
 
-  # Format short book name
-  local book_num=$biblebooknumber[$book_n];
-  if [[ $book3[1] = 1 ]]; then
-    local book_short_r=F${book3[2]:u}${book3[3]:l};
-  elif [[ $book3[1] = 2 ]]; then
-    local book_short_r=S${book3[2]:u}${book3[3]:l};
-  elif [[ $book3[1] = 3 ]]; then
-    local book_short_r=T${book3[2]:u}${book3[3]:l};
+  # Check for invalid references (non-numeric chapter and verse)
+  if ! [[ $chp =~ $nums && $ver =~ $nums ]]; then
+    print '-1'
   else
-    local book_short_r=${book3[1]:u}${book3[2,3]:l};
-  fi
-  # Format full book name
-    local book_parts=(${(s/_/)book_n});
-  if [[ "$book_parts[1]" =~ $num ]]; then
-    local book_name_r=$book_parts[1]${book_parts[2][1]:u}${book_parts[2][2,-1]:l}
-  elif [[ "$book_parts[1]" = song ]]; then
-    local book_name_r=SongofSongs;
-  book_short_r=Son;
-  elif [[ "$book_parts[1]" = philemon ]]; then
-    local book_name_r=Philemon;
-  book_short_r=Phm;
-  elif [[ "$book_parts[1]" = jude ]]; then
-    local book_name_r=Jude;
-  book_short_r=Jde;
-  else
-    local book_name_r=${book_parts[1][1]:u}${book_parts[1][2,-1]:l}
-  fi
+    book_name=${book_name:l};
+    local book3=${book_name[1,3]};
+    local book_n=$biblebooks[$book3];
 
-  if [[ $ver = '' ]]; then
-    if [[ $book_short_r = Oba || $book_short_r = Phm || $book_short_r = SJo || $book_short_r = TJo|| $book_short_r = Jde ]]; then
-      print "$book_num"_"$book_name_r"_"1.htm#$book_short_r"1-"$chp";
-    else
-      print "$book_num"_"$book_name_r"_"$chp.htm#$book_short_r$chp-1";
+    if [[ "${book_name[1,6]}" = 'philem' || "${book_name[1,5]}" = 'philm' ]]; then
+      book_n=philemon
+    elif [[ "${book_name[1,4]}" = 'judg' || "${book_name[1,3]}" = 'jdg' ]]; then
+      book_n=judges
     fi
-  else
-    print "$book_num"_"$book_name_r"_"$chp.htm#$book_short_r$chp-$ver";
+
+    # Format short book name
+    local book_num=$biblebooknumber[$book_n];
+    if [[ $book3[1] = 1 ]]; then
+      local book_short_r=F${book3[2]:u}${book3[3]:l};
+    elif [[ $book3[1] = 2 ]]; then
+      local book_short_r=S${book3[2]:u}${book3[3]:l};
+    elif [[ $book3[1] = 3 ]]; then
+      local book_short_r=T${book3[2]:u}${book3[3]:l};
+    else
+      local book_short_r=${book3[1]:u}${book3[2,3]:l};
+    fi
+    # Format full book name
+    local book_parts=(${(s/_/)book_n});
+    if [[ "$book_parts[1]" =~ $num ]]; then
+      local book_name_r=$book_parts[1]${book_parts[2][1]:u}${book_parts[2][2,-1]:l}
+    elif [[ "$book_parts[1]" = song ]]; then
+      local book_name_r=SongofSongs;
+      book_short_r=Son;
+    elif [[ "$book_parts[1]" = philemon ]]; then
+      local book_name_r=Philemon;
+      book_short_r=Phm;
+    elif [[ "$book_parts[1]" = jude ]]; then
+      local book_name_r=Jude;
+      book_short_r=Jde;
+    elif [[ "$book_parts[1]" = judges ]]; then
+      local book_name_r=Judges;
+      book_short_r=Jud;
+    else
+      local book_name_r=${book_parts[1][1]:u}${book_parts[1][2,-1]:l}
+    fi
+    if [[ $ver = '' ]]; then
+      if [[ $book_short_r = Oba || $book_short_r = Phm || $book_short_r = SJo || $book_short_r = TJo|| $book_short_r = Jde ]]; then
+        print "$book_num"_"$book_name_r"_"1.htm#$book_short_r"1-"$chp";
+      else
+        print "$book_num"_"$book_name_r"_"$chp.htm#$book_short_r$chp-1";
+      fi
+    else
+      print "$book_num"_"$book_name_r"_"$chp.htm#$book_short_r$chp-$ver";
+    fi
   fi
 }
 
