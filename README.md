@@ -12,6 +12,9 @@ $ rl Rom. 8:11
 $ rl rom 8:11
 $ rl rom 8 11
 ```
+
+If no chapter number or verse number is written, it becomes 1 by default.
+
 ```rl``` can be replaced with ```rw``` to look up the verse via a default browser instead:
 ```
 $ rw Romans 8:11
